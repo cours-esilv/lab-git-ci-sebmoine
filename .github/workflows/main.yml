@@ -1,7 +1,9 @@
 name: First Workflow PW1
 on: 
   push:
-    branches: main
+    branches:
+      - main
+      - feature/**
 permissions:
   contents: read
   issues: read
