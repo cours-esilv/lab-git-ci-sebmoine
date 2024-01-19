@@ -1,6 +1,9 @@
 name: First Workflow PW1
-on: [push]
-branches: main
+on: 
+  push:
+    branches:
+      - main
+      - feature/**
 permissions:
   contents: read
   issues: read
@@ -10,7 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Standard Checkout
+        uses: actions/checkout@v4
       # Installe java 8 sur l'agent
       - name: Set up JDK 8
         uses: actions/setup-java@v2
@@ -32,3 +36,13 @@ jobs:
         with:
           name: my-app-1.0
           path: target/*
+      # Installe la commande docker sur l'agent
+      - name: Install Docker
+        uses: docker/setup-buildx-action@v1
+        id: buildx
+        with:
+          install: true
+      # Build l'image Docker
+      - name: Docker build
+        run: |
+          docker build .
