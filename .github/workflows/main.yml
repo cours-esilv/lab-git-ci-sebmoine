@@ -1,6 +1,7 @@
 name: First Workflow PW1
-on: [push]
-branches: main
+on: 
+  push:
+    branches: main
 permissions:
   contents: read
   issues: read
@@ -10,6 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Standard Checkout
       - uses: actions/checkout@v4
       # Installe java 8 sur l'agent
       - name: Set up JDK 8
