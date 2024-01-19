@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      - feature/smoine
+      - feature
 permissions:
   contents: read
   issues: read
